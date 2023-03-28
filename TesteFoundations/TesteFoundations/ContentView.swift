@@ -121,7 +121,7 @@ struct ContentView2: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .previewDevice("iPhone 8")
+        ContentView2()
+            .previewDevice("iPhone 14")
     }
 }
