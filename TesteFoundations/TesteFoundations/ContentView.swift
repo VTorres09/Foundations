@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var title: String = ""
+    @State private var selectedTab = 0
     var body: some View {
         VStack {
             Text("Novo Projeto")
@@ -73,6 +74,8 @@ func addMembers() {
 struct ContentView2: View {
     @State private var title: String = ""
     @State private var description: String = ""
+    @State private var selectedButtonIndices = Set<Int>()
+    
     var body: some View {
         VStack {
             Text("Nova Tarefa")
@@ -102,6 +105,47 @@ struct ContentView2: View {
                     .bold()
                     .padding(.vertical)
                     .font(.system(size: 20))
+                HStack(spacing: 20) {
+                            Button("Desenvolvimento") {
+                                if selectedButtonIndices.contains(0) {
+                                    selectedButtonIndices.remove(0)
+                                } else {
+                                    selectedButtonIndices.insert(0)
+                                }
+                            }
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                            .foregroundColor(selectedButtonIndices.contains(0) ? .white : .black)
+                            .background(selectedButtonIndices.contains(0) ? Color.blue : Color.gray)
+                            .cornerRadius(4)
+                            
+                            Button("Design") {
+                                if selectedButtonIndices.contains(1) {
+                                    selectedButtonIndices.remove(1)
+                                } else {
+                                    selectedButtonIndices.insert(1)
+                                }
+                            }
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                            .foregroundColor(selectedButtonIndices.contains(1) ? .white : .black)
+                            .background(selectedButtonIndices.contains(1) ? Color.blue : Color.gray)
+                            .cornerRadius(4)
+                            
+                            Button("Inovação") {
+                                if selectedButtonIndices.contains(2) {
+                                    selectedButtonIndices.remove(2)
+                                } else {
+                                    selectedButtonIndices.insert(2)
+                                }
+                            }
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                            .foregroundColor(selectedButtonIndices.contains(2) ? .white : .black)
+                            .background(selectedButtonIndices.contains(2) ? Color.blue : Color.gray)
+                            .cornerRadius(4)
+                        }
+                        .padding()
                 HStack {
                     Text("Tempo total:")
                         .bold()
@@ -109,13 +153,26 @@ struct ContentView2: View {
                         .font(.system(size: 20))
                 }
             }
-            .padding(.bottom, 100)
+            .padding(.bottom, 40)
             .padding(.leading)
             .padding(.trailing)
             Button("Create project", action: createProject)
                 .buttonStyle(.borderedProminent)
             Button("Not now", action: back)
         }
+    }
+}
+
+struct BorderButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(10)
+            .contentShape(Rectangle())
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(lineWidth: 2)
+                    .foregroundColor(configuration.isPressed ? .gray : .blue)
+            )
     }
 }
 
