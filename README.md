@@ -4,4 +4,4 @@
 
 Manage your team quickly and intuitively. Create tasks and stay on top of all the progress of your project. 
 
-This work was developed during the Foundations discipline at the UFPE Informatics Center sponsored by Apple Developer Academy.
+This MVP was developed during the Foundations discipline at the UFPE Informatics Center sponsored by Apple Developer Academy.
